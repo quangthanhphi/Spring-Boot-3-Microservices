@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@RestController // Đánh dấu lớp này là một controller trong Spring MVC, cho phép nó xử lý các yêu cầu HTTP.
 @RequestMapping("/api/product")
 @RequiredArgsConstructor // Tao ra constructor tu dong, khong can khai bao constructor
 public class ProductController {
