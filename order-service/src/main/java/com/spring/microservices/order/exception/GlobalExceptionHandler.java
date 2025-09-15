@@ -23,4 +23,22 @@ public class GlobalExceptionHandler {
                         "message", "Invalid JSON format: " + ex.getMostSpecificCause().getMessage()
                 ));
     }
+
+    // Bắt lỗi chung
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleException(Exception ex) {
+        // Log chi tiết để dev biết
+        ex.printStackTrace();
+        // Trả lỗi JSON dễ hiểu cho Postman
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Error: " + ex.getMessage());
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgument(IllegalArgumentException ex) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body("Invalid request: " + ex.getMessage());
+    }
 }
