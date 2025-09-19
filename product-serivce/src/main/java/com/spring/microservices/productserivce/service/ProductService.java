@@ -25,13 +25,13 @@ public class ProductService {
                 .build();
         productRepository.save(product);
         log.info("Product created successfully");
-        return new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice()); // Chuyen doi Product thanh ProductResponse
+        return new ProductResponse(product.getId(), product.getName(), product.getDescription(),product.getSkuCode(), product.getPrice()); // Chuyen doi Product thanh ProductResponse
     }
 
     public List<ProductResponse> getAllProducts() {
         return productRepository.findAll()
                 .stream() // Chuyen doi danh sach Product thanh stream, stream là một chuỗi các phần tử có thể xử lý tuần tự
-                .map(product -> new ProductResponse(product.getId(), product.getName(), product.getDescription(), product.getPrice()))  // Chuyen doi Product thanh ProductResponse, dùng ProductResponse để trả về dữ liệu DTO an toàn hơn
+                .map(product -> new ProductResponse(product.getId(), product.getName(), product.getDescription(),product.getSkuCode(), product.getPrice()))  // Chuyen doi Product thanh ProductResponse, dùng ProductResponse để trả về dữ liệu DTO an toàn hơn
                 .toList();
     }
 }

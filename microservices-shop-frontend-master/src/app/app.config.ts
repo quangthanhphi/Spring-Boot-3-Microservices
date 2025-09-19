@@ -6,11 +6,17 @@ import {provideHttpClient, withInterceptors} from "@angular/common/http";
 import {authConfig} from "./config/auth.config";
 import {provideAuth} from "angular-auth-oidc-client";
 import {authInterceptor} from "./interceptor/auth.interceptor";
+import { errorInterceptor } from './error.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({eventCoalescing: true}),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([authInterceptor])),
+   provideHttpClient(
+         withInterceptors([
+           authInterceptor,
+           errorInterceptor
+         ])
+       ),
     provideAuth(authConfig),
   ]
 };

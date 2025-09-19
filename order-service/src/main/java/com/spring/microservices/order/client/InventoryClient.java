@@ -12,7 +12,7 @@ import org.springframework.web.service.annotation.GetExchange;
 @Slf4j
 public interface InventoryClient {
 
-    Logger log = LoggerFactory.getLogger(InventoryClient.class);
+    Logger log = LoggerFactory.getLogger(InventoryClient.class); //lombok chi co the su dung voi class nen phai dung groovy
 
     @GetExchange("/api/inventory")
     @CircuitBreaker(name = "inventory",fallbackMethod = "fallbackMethod")

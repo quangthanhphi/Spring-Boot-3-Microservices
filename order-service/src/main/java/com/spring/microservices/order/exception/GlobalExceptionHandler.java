@@ -5,8 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestControllerAdvice
@@ -24,15 +26,25 @@ public class GlobalExceptionHandler {
                 ));
     }
 
-    // Bắt lỗi chung
+    @ExceptionHandler(NullPointerException.class)
+    public ResponseEntity<Map<String, String>> handleNullPointer(NullPointerException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("message", "Quantity cannot be null");
+        return ResponseEntity.badRequest().body(error);
+    }
+
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ResponseEntity<Map<String, String>> handleNotFound(NoHandlerFoundException ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("message", "API not found: " + ex.getRequestURL());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleException(Exception ex) {
-        // Log chi tiết để dev biết
-        ex.printStackTrace();
-        // Trả lỗi JSON dễ hiểu cho Postman
-        return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("Error: " + ex.getMessage());
+    public ResponseEntity<Map<String, String>> handleOtherExceptions(Exception ex) {
+        Map<String, String> error = new HashMap<>();
+        error.put("message", ex.getMessage() != null ? ex.getMessage() : "Unexpected error");
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
