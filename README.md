@@ -1,19 +1,28 @@
 # Spring-Boot-3-Microservices
 <a href="https://deepwiki.com/quangthanhphi/Spring-Boot-3-Microservices"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
 
-Stack:
-Testing with Wiremock
-API Gateway using Spring Cloud Gateway MVC
-Secure with Keycloak
-Document REST API with OpenAPI
-Circuit Breaker
-Angular App
-Event Driven Architecture using Kafka
-Observability using Grafana Stack (Prometheus, Loki,Tempo)
-Deploy to Kubernetes
-Kind sign k8s
+## 🛠️ Tech Stack
+
+| Layer | Technology | Purpose |
+|-------|------------|----------|
+| Framework | Spring Boot 3 | Core backend framework |
+| API Gateway | Spring Cloud Gateway | Routing & API aggregation |
+| Security | Keycloak + OAuth2 / JWT | Authentication & authorization |
+| Messaging | Apache Kafka + Avro | Event-driven communication |
+| Database | MySQL 8.3 | Relational data storage |
+| Frontend | Angular | Single-page application (SPA) |
+| Metrics | Prometheus + Micrometer + Actuator | Metrics & monitoring |
+| Logging | Loki + Loki4j | Centralized logging |
+| Tracing | Tempo + Brave / Zipkin | Distributed tracing |
+| Resilience | Resilience4j | Fault tolerance patterns |
+| Testing | WireMock + Testcontainers | Integration testing & mocks |
+| API Docs | OpenAPI / Swagger | REST API documentation |
+| Deployment | Kubernetes / Kind | Container orchestration |
+| Build | Maven | Dependency & build management |
+
+---
 Image:
-[Architecture.jpg]
+![System Architecture][Architecture.jpg]
 [Screenshot.jpg]
 
 1. Grafana:http://localhost:3000
@@ -27,6 +36,7 @@ Image:
 9. Notification Service: http://localhost:8083
 10. API Gateway: http://localhost:9000
 
+<!-- 
 mvn clean compile package
 mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.publish=true -DdockerPassword=...
 
@@ -41,3 +51,4 @@ kubectl port-forward svc/mysql 3306:3306
 mysql -h 127.0.0.1 -P 3306 -u root -p
 
 Cmd + Shift + R: find and replace
+-->
