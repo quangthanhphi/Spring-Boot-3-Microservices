@@ -1,6 +1,6 @@
 <<<<<<< HEAD
 .DS_Store
-product-serivce/data/
+product-service/data/
 
 # Compiled class file
 *.class
@@ -26,5 +26,5 @@ product-serivce/data/
 hs_err_pid*
 replay_pid*
 =======
-product-serivce/data/
+product-service/data/
 >>>>>>> 08d7925 (Add local .gitignore)

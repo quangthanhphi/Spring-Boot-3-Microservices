@@ -224,6 +224,10 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+                    <image>
+                        <name>phiquangthanh123/order-service:latest</name>
+                        <publish>true</publish>
+                    </image>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
