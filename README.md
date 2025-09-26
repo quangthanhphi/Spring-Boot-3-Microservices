@@ -21,8 +21,8 @@
 | Build | Maven | Dependency & build management |
 
 ---
-Image:
-![System Architecture][Architecture.jpg]
+## 🏗️ System Architecture
+![System Architecture](./Architecture.jpg)
 
 1. Grafana:http://localhost:3000
 2. Prometheus:http://localhost:9090
