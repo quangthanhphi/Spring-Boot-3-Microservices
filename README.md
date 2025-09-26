@@ -1,6 +1,65 @@
 # Spring-Boot-3-Microservices
 <a href="https://deepwiki.com/quangthanhphi/Spring-Boot-3-Microservices"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
 
+# Spring Boot 3 Microservices
+
+## Overview
+
+This project is a **Spring Boot 3 microservices-based e-commerce system** designed to demonstrate modern software architecture principles such as scalability, maintainability, fault tolerance, and observability.  
+
+The system is composed of multiple independent services — each responsible for a specific domain — communicating through synchronous REST APIs and asynchronous events.
+
+---
+
+## System Architecture
+
+### 🧩 Core Services
+
+| Service | Responsibility |
+|--------|------------------|
+| **API Gateway** | Routes requests, handles authentication, and aggregates APIs |
+| **Product Service** | Manages product catalog (CRUD operations) |
+| **Order Service** | Handles order creation, validation, inventory checks, and event publishing |
+| **Inventory Service** | Manages stock levels and availability |
+| **Notification Service** | Consumes events and sends notifications (e.g., emails) |
+| **Frontend (Angular)** | Provides user-facing web interface |
+
+**Communication model:**
+- **Asynchronous messaging:** Using **Apache Kafka + Avro** for inter-service event communication.  
+- **Synchronous calls:** Used when immediate response is needed (e.g., order validation).  
+- **Resilience patterns:** Circuit Breaker, Retry, Bulkhead, and Time Limiter ensure service reliability.
+
+---
+
+## 📐 Architectural Highlights
+
+### 🪩 Event-Driven Architecture
+- Services communicate asynchronously through Kafka events.  
+- Example: When an order is created, the `Order Service` publishes an event, which `Inventory Service` and `Notification Service` consume.
+
+### 🛡️ Resilience Patterns
+- **Circuit Breaker:** Prevents cascading failures.  
+- **Retry:** Handles transient errors.  
+- **Bulkhead:** Isolates service failures.  
+- **Time Limiter:** Avoids long-running requests.
+
+### 🔎 Observability
+Implements the **three pillars** of observability:
+- **Metrics:** Collected via Micrometer and scraped by Prometheus.  
+- **Logging:** Centralized JSON logs via Loki.  
+- **Tracing:** Distributed request tracing with Tempo and Brave/Zipkin.
+
+### 🔐 Security
+- Centralized authentication & authorization with Keycloak.  
+- API Gateway validates JWT before forwarding requests downstream.
+
+### 🚀 Deployment & CI/CD
+- Runs locally with Docker or Kind.  
+- Deployable to cloud environments using Kubernetes manifests.  
+- Includes metrics dashboards (Grafana), centralized logs, and API documentation (Swagger UI).
+
+---
+
 ## 🛠️ Tech Stack
 
 | Layer | Technology | Purpose |
