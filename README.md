@@ -23,7 +23,6 @@
 ---
 Image:
 ![System Architecture][Architecture.jpg]
-[Screenshot.jpg]
 
 1. Grafana:http://localhost:3000
 2. Prometheus:http://localhost:9090
