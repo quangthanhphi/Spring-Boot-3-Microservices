@@ -27,7 +27,7 @@ Image:
 10. API Gateway: http://localhost:9000
 
 mvn clean compile package
-mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.publish=true -DdockerPassword=dckr_pat_LNaNxd0YsP3n2UBF6eYyr2YC5C0
+mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.publish=true -DdockerPassword=...
 
 kubectl create deployment mysql --image=mysql:8.3.0 --port=3306 --replicas=1 --dry-run=client -o yaml
 kubectl create service clusterip mysql --tcp=3306:3306 --dry-run=client -o yaml
